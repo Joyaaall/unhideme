@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f3f0e8"><meta name="description" content="Follow your public Reddit footprint. Search indexed posts, inspect the evidence, and keep what you find.">
+<title>unhideme</title>
+<link rel="stylesheet" href="/static/style.css"><script src="/static/import.js" defer></script><script src="/static/media.js" defer></script><script src="/static/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#search-desk">Skip to search</a>
+<div class="sheet">
+<header class="masthead"><a class="wordmark" href="/" aria-label="unhideme home"><span class="brand-mark" aria-hidden="true">↳</span> unhideme</a><div class="masthead-right"><span class="edition">A PUBLIC FOOTPRINT INDEX</span><a href="#field-notes">Field notes <span aria-hidden="true">↗</span></a></div></header>
+<main>
+<div class="topline mono"><span>THE SEARCH DESK</span><span>REDDIT, RETRACED.</span></div>
+<div class="desk-layout">
+<aside class="intro">
+<p class="eyebrow"><span class="orange-dot"></span> FOLLOW THE THREAD</p>
+<h1>Unhideme</h1>
+<a class="notes-link" href="#field-notes">Know what you're looking at <span aria-hidden="true">↓</span></a>
+<div class="rail-foot mono"><span aria-hidden="true">↳</span> PUBLIC POSTS. NO REDDIT LOGIN.</div>
+</aside>
+<section id="search-desk" class="index" aria-labelledby="index-title">
+<div class="section-heading"><h2 id="index-title">Start with a name.</h2><span class="mono index-label">01 / SEARCH</span></div>
+<form id="search-form" novalidate>
+<label class="input-label mono" for="username">REDDIT USERNAME</label>
+<div class="search-line"><div class="username-wrap"><span class="username-prefix" aria-hidden="true">u/</span><input id="username" name="username" value="" placeholder="your_username" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="username-help validation"></div><button class="search-button" id="search-button" type="submit">Trace posts <span aria-hidden="true">↗</span></button></div>
+<div class="search-caption"><p id="username-help">Just the username. We'll follow the public trail.</p><span class="mono">↵ TO SEARCH</span></div>
+<p id="validation" class="validation" role="alert" hidden></p>
+</form>
+<details class="import-desk"><summary>Bring your own account export <span aria-hidden="true">+</span></summary><div>
+<p>Import Reddit’s posts.csv to fill gaps in the public trail. Processed in your browser. File is not uploaded.</p>
+<p class="import-limit">CSV only · 5 MB maximum · 20,000 rows · No ZIP processing. A new search clears imported posts.</p>
+<label class="input-label mono" for="import-file">REDDIT POSTS CSV</label><input id="import-file" type="file" accept=".csv" aria-describedby="import-message">
+<label class="import-confirm"><input id="import-confirm" type="checkbox"> <span>This is my export for the entered username</span></label>
+<button id="import-button" class="export-button" type="button">Import posts ↗</button><p id="import-message" role="status" aria-live="polite">Self-supplied records are not independently verified.</p>
+</div></details>
+<div id="loading" class="loading" hidden><div class="scan-track"><i></i></div><div class="loading-caption"><div><strong>Following the public trail…</strong><p id="loading-detail">Checking search indexes. This can take up to 90 seconds.</p></div><button id="cancel" class="text-button" type="button">Cancel search ×</button></div></div>
+<div class="index-toolbar"><div><span class="mono index-label">02 / THE INDEX</span><p id="count">Ready when you are.</p></div><button id="export" class="export-button" type="button" disabled>Export JSON <span aria-hidden="true">↗</span></button></div>
+<fieldset id="filters" class="filters" disabled><legend class="sr-only">Filter search results</legend><div class="classification-tabs" role="group" aria-label="Evidence classification"><button type="button" data-classification="all" aria-pressed="true">All traces <span data-count="all">—</span></button><button type="button" data-classification="authored" aria-pressed="false">Authored <span data-count="authored">—</span></button><button type="button" data-classification="mention" aria-pressed="false">Mentions <span data-count="mention">—</span></button><button type="button" data-classification="uncertain" aria-pressed="false">Uncertain <span data-count="uncertain">—</span></button></div><div class="secondary-filters"><label><span class="sr-only">Filter by subreddit</span><select id="subreddit"><option value="all">All subreddits</option></select></label><label class="sort-control"><span class="sr-only">Sort results</span><select id="sort"><option value="relevance">Relevance / original</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label><label class="text-filter"><span aria-hidden="true">⌕</span><span class="sr-only">Search within results</span><input type="search" id="text-filter" placeholder="Find within results…"></label><button id="reset-filters" type="button" class="text-button">Reset</button></div></fieldset>
+<div id="status" class="sr-only" role="status" aria-live="polite"></div>
+<div id="coverage" class="coverage-strip" aria-label="Source coverage" hidden></div>
+<div id="warnings" class="warnings" hidden></div>
+<div id="result-region" aria-busy="false">
+<div id="empty" class="empty-state"><div class="empty-glyph" aria-hidden="true">↳<span>?</span></div><p class="mono empty-kicker" id="empty-kicker">A TRAIL WAITING TO BE FOUND</p><h3 id="empty-title">Every username tells a story.</h3><p id="empty-copy">Enter yours above to find where it leads.<br>Only real search results will appear here.</p></div>
+<div id="results"></div>
+</div>
+<p id="provenance" class="provenance mono" hidden></p>
+<p class="evidence-note"><span aria-hidden="true">※</span> “Authored” indicates source author evidence, not direct verification by Reddit. Local imports are your own account export, not independently verified. An index is a lead, not a complete history.</p>
+</section>
+</div>
+<section id="field-notes" class="field-notes" aria-labelledby="notes-title"><div><p class="mono index-label">03 / FIELD NOTES</p><h2 id="notes-title">Read between<br>the results.</h2></div><div class="notes-body"><details><summary>What counts as a trace?<span aria-hidden="true">+</span></summary><div><p>unhideme searches publicly indexed Reddit pages for a username. Results may include authored posts, mentions by other people, or pages where ownership is unclear. Open the evidence on any result to see why it was classified.</p></div></details><details><summary>Why might something be missing?<span aria-hidden="true">+</span></summary><div><p>Search indexes are incomplete and can be out of date. Deleted, private, new, or unindexed posts may not appear. No results does not mean no posts exist. This is not an archive or a direct Reddit account-history export.</p></div></details><details><summary>What can I keep?<span aria-hidden="true">+</span></summary><div><p>Export JSON saves the currently filtered results with their source, evidence, search time and any warnings. No Reddit sign-in is needed. Please use public information responsibly.</p></div></details></div></section>
+</main>
+<footer><span>Independent tool. Not affiliated with Reddit.</span><a href="#search-desk">Back to the desk ↑</a></footer>
+</div>
+<noscript><p class="noscript">JavaScript is needed to search the public index. Enable it, then reload this page.</p></noscript>
+</body></html>
